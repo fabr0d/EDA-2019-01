@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <math.h>   
 using namespace std;
 class pointClass
 {
@@ -21,7 +22,6 @@ public:
 		for (int i = 0; i < dimension; i++)
 		{
 			double random = 1.0 / (rand() % 5000);
-
 			point[i] = random;
 		}
 	}
@@ -37,13 +37,14 @@ public:
 };
 
 
-double EuclDis(pointClass A, pointClass B, int PointDim) {
+double EuclDis(pointClass A, pointClass B) {
 	double ans;
-	double temp;
-	for (int i = 0; i < PointDim; i++)
+	double temp=0;
+	for (int i = 0; i < A.dimension; i++)
 	{
-		/* code */
+		temp=temp+((B.point[i]-A.point[i])*(B.point[i]-A.point[i]));
 	}
+	ans=sqrt(ans);
 	return 0;
 }
 
@@ -51,6 +52,9 @@ int main(int argc, char const *argv[])
 {
 	pointClass* RandomPoints = NULL;
 	RandomPoints = new pointClass[11000];
+
+	int* ListDist=NULL;
+	ListDist = new int[1000];
 
 	int dims[11] = { 2,3,10,100,200,500,1000,2000,3000,4000,5000 };
 
