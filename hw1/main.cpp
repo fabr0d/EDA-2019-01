@@ -9,10 +9,10 @@ public:
 	int dimension;
 	double *point = NULL;
 	pointClass() = default;
-	~pointClass()
+	/*~pointClass()
 	{
 		delete[] point;
-	};
+	};*/
 	void set_dim(int dimension_) {
 		dimension = dimension_;
 	};
@@ -21,7 +21,7 @@ public:
 		//srand(time(NULL));
 		for (int i = 0; i < dimension; i++)
 		{
-			double random = 1.0 / (rand() % 100);
+			double random = ((double) rand() / (RAND_MAX));
 			point[i] = random;
 		}
 	}
@@ -39,18 +39,11 @@ public:
 
 double EuclDis(pointClass A, pointClass B) {
 	double ans=0;
-	//cout<<"A.dimension: "<<A.dimension<<endl;
-	A.printPoint();
-	B.printPoint();
 	for (int i = 0; i < A.dimension; i++)
 	{
 		ans = ans + ( (B.point[i] - A.point[i]) * (B.point[i] - A.point[i]) );
 	}
 	ans=sqrt(ans);
-	cout<<"after calculate: "<<endl;
-	A.printPoint();
-	B.printPoint();
-	
 	return ans;
 }
 
@@ -62,7 +55,7 @@ int main(int argc, char const *argv[])
 	double min;
 	double max;
 	double prom;
-	int dims[11] = { 2,3,10,100,200,500,1000,3000,5000 };
+	int dims[9] = { 2,3,10,100,200,500,1000,3000,5000 };
 	int count=0;
 
 		for (int j = 0; j < 1000; j++)
@@ -70,7 +63,7 @@ int main(int argc, char const *argv[])
 			//cout << dims[i] << endl;
 			RandomPoints[j].set_dim(dims[0]);
 			RandomPoints[j].genPoint();
-			RandomPoints[j].printPoint();
+			//RandomPoints[j].printPoint();
 		}
 		for (int j = 1000; j < 2000; j++)
 		{
@@ -130,48 +123,200 @@ int main(int argc, char const *argv[])
 		}
 
 	cout<<"calculo de el menor mayor y promedio: "<<endl;
+	double temporal;
+	int contador=0;
+	cout<<"-------------------------------------"<<endl;
 	cout<<"0-999 2D"<<endl;
-
-	//cout<<"A.DIM: "<<A.dimension<<endl;
-
-	max=EuclDis(RandomPoints[0],RandomPoints[1]);
-	cout<<"max: "<<max<<endl;
-	RandomPoints[0].printPoint();
-	RandomPoints[1].printPoint();
-	//min=EuclDis(RandomPoints[0],RandomPoints[1]);
-	//cout<<"min: "<<min<<endl;
-	//cout<<"test....."<<endl;
-	/*
-	for (int i = 0; i < 999; i++)
-	{
-		for (int j = 1; j < 1000; j++)
-		{
-			if (EuclDis(RandomPoints[i],RandomPoints[j]) > max)
-			{
-				max=EuclDis(RandomPoints[i],RandomPoints[j]);
+	temporal=EuclDis(RandomPoints[0],RandomPoints[1]);
+	max=temporal;
+	min=temporal;
+	for (int i = 0; i < 999; i++){
+		for (int j = 1; j < 1000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
 			}
-			if (EuclDis(RandomPoints[i],RandomPoints[j]) < min)
-			{
-				min=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal < min and temporal != 0){
+				min=temporal;
 			}
-			prom=prom+EuclDis(RandomPoints[i],RandomPoints[j]);
-			//cout<<"Sum of eucl dist: "<<prom<<endl;
+			prom=prom+temporal;
 		}	
 	}
-	*/
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
 	cout<<"-------------------------------------"<<endl;
-	cout<<"PROM 0-999 2D: "<<prom/499500<<endl;
-
 	cout<<"1000-1999 3D"<<endl;
+	temporal=EuclDis(RandomPoints[1000],RandomPoints[1001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 1000; i < 1999; i++){
+		for (int j = 1001; j < 2000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
 	cout<<"2000-2999 10D"<<endl;
+	temporal=EuclDis(RandomPoints[2000],RandomPoints[2001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 2000; i < 2999; i++){
+		for (int j = 2001; j < 3000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
 	cout<<"3000-3999 100D"<<endl;
+	temporal=EuclDis(RandomPoints[3000],RandomPoints[3001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 3000; i < 3999; i++){
+		for (int j = 3001; j < 4000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			//cout<<"temporal: "<<temporal<<endl;
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+			contador=contador+1;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
 	cout<<"4000-4999 200D"<<endl;
+	temporal=EuclDis(RandomPoints[4000],RandomPoints[4001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 4000; i < 4999; i++){
+		for (int j = 4001; j < 5000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
 	cout<<"5000-5999 500D"<<endl;
+	temporal=EuclDis(RandomPoints[5000],RandomPoints[5001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 5000; i < 5999; i++){
+		for (int j = 5001; j < 6000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
 	cout<<"6000-6999 1000D"<<endl;
-	cout<<"7000-7999 2000D"<<endl;
-	cout<<"8000-8999 3000D"<<endl;
-	cout<<"9000-9999 4000D"<<endl;
-	cout<<"10000-10999 5000D"<<endl;
+	temporal=EuclDis(RandomPoints[6000],RandomPoints[6001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 6000; i < 6999; i++){
+		for (int j = 6001; j < 7000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
+	cout<<"7000-7999 3000D"<<endl;
+	temporal=EuclDis(RandomPoints[7000],RandomPoints[7001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 7000; i < 7999; i++){
+		for (int j = 7001; j < 8000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
+	cout<<"8000-8999 5000D"<<endl;
+	temporal=EuclDis(RandomPoints[8000],RandomPoints[8001]);
+	max=temporal;
+	min=temporal;
+	for (int i = 8000; i < 8999; i++){
+		for (int j = 8001; j < 9000; j++){
+			temporal=EuclDis(RandomPoints[i],RandomPoints[j]);
+			if (temporal > max){
+				max=temporal;
+			}
+			if (temporal < min and temporal != 0){
+				min=temporal;
+			}
+			prom=prom+temporal;
+		}	
+	}
+	cout<<"PROM: "<<prom/998001<<endl;
+	cout<<"min: "<<min<<endl;
+	cout<<"max: "<<max<<endl;
+	prom=0;
+	cout<<"-------------------------------------"<<endl;
 
 	return 0;
 }
