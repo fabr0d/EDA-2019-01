@@ -39,30 +39,31 @@ public:
 
 double EuclDis(pointClass A, pointClass B) {
 	double ans=0;
-	cout<<"A.dimension: "<<A.dimension<<endl;
+	//cout<<"A.dimension: "<<A.dimension<<endl;
 	A.printPoint();
 	B.printPoint();
 	for (int i = 0; i < A.dimension; i++)
 	{
-		ans=ans+((B.point[i]-A.point[i])*(B.point[i]-A.point[i]));
+		ans = ans + ( (B.point[i] - A.point[i]) * (B.point[i] - A.point[i]) );
 	}
 	ans=sqrt(ans);
-	cout<<"ans :"<<ans<<endl;
-	cout<<""<<endl;
-	return 0;
+	cout<<"after calculate: "<<endl;
+	A.printPoint();
+	B.printPoint();
+	
+	return ans;
 }
 
 int main(int argc, char const *argv[])
 {
 	pointClass* RandomPoints = NULL;
-	RandomPoints = new pointClass[11000];
+	RandomPoints = new pointClass[9000];
 
 	double min;
 	double max;
 	double prom;
-
-	int dims[11] = { 2,3,10,100,200,500,1000,2000,3000,4000,5000 };
-	//int tessst;
+	int dims[11] = { 2,3,10,100,200,500,1000,3000,5000 };
+	int count=0;
 
 		for (int j = 0; j < 1000; j++)
 		{
@@ -127,22 +128,6 @@ int main(int argc, char const *argv[])
 			RandomPoints[j].genPoint();
 			//RandomPoints[j].printPoint();
 		}
-		for (int j = 9000; j < 10000; j++)
-		{
-			//cout << dims[i] << endl;
-			RandomPoints[j].set_dim(dims[9]);
-			RandomPoints[j].genPoint();
-			//RandomPoints[j].printPoint();
-		}
-		for (int j = 10000; j < 11000; j++)
-		{
-			//cout << dims[i] << endl;
-			RandomPoints[j].set_dim(dims[10]);
-			RandomPoints[j].genPoint();
-			//RandomPoints[j].printPoint();
-		}
-
-		//cin>>tessst;
 
 	cout<<"calculo de el menor mayor y promedio: "<<endl;
 	cout<<"0-999 2D"<<endl;
@@ -150,11 +135,12 @@ int main(int argc, char const *argv[])
 	//cout<<"A.DIM: "<<A.dimension<<endl;
 
 	max=EuclDis(RandomPoints[0],RandomPoints[1]);
-	min=EuclDis(RandomPoints[0],RandomPoints[1]);
-	
 	cout<<"max: "<<max<<endl;
-	cout<<"min: "<<min<<endl;
-	cout<<"test....."<<endl;
+	RandomPoints[0].printPoint();
+	RandomPoints[1].printPoint();
+	//min=EuclDis(RandomPoints[0],RandomPoints[1]);
+	//cout<<"min: "<<min<<endl;
+	//cout<<"test....."<<endl;
 	/*
 	for (int i = 0; i < 999; i++)
 	{
@@ -173,6 +159,7 @@ int main(int argc, char const *argv[])
 		}	
 	}
 	*/
+	cout<<"-------------------------------------"<<endl;
 	cout<<"PROM 0-999 2D: "<<prom/499500<<endl;
 
 	cout<<"1000-1999 3D"<<endl;
