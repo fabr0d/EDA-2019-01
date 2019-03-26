@@ -28,8 +28,9 @@ void print_vec_int(vector<int> vec){
 	cout<<""<<endl;
 }
 
-string safeVC(vector<int> vc){
+string safeVC(vector<int> vc, string namefile){
 	string tempo;
+	tempo=tempo+namefile+": ";
 	for (int i = 0; i < vc.size(); i++){
 		tempo=tempo+to_string(vc[i])+" - ";
 	}
@@ -117,7 +118,7 @@ vector<int> genVC(vector<string> doc, vector<string>dictionary, vector<int>VC){
 int main() 
 {
 	string line; 
-
+	//creacion de vector con la lista de stop words
 	vector<string> StopWords;
     ifstream readfile("stopwords.txt");
     if (readfile.is_open()){
@@ -126,7 +127,7 @@ int main()
     	}
     	readfile.close();
     }
-
+    //creacion de vector con lista de signos de puntuacion
     vector<string> PunctuationList;
     ifstream readfile2("Punctuation.txt");
     if (readfile2.is_open()){
@@ -135,21 +136,14 @@ int main()
     	}
     	readfile2.close();
     }
-    //A B C R
-    vector<string> Letters;
-    Letters.push_back("A");
-    Letters.push_back("B");
-    Letters.push_back("C");
-    Letters.push_back("R");
-    vector<string> dictionary;
 
+    vector<string> dictionary; //vector que contendra la lista de palabras
     DIR *dir;
     struct dirent *ent;
     if ((dir = opendir ("/home/fabrizio/Desktop/GitHubRepos/EDA/EDA-2019-01/EDATeoria/HW1/files")) != NULL) {
     	while ((ent = readdir (dir)) != NULL) {
     		string docname=ent->d_name;
             vector<string> document;
-            cout<<"docname: "<<docname<<endl;
             ifstream readfile3(docname);
 		    if (readfile3.is_open()){
 		    	while(getline(readfile3,line)){
@@ -157,35 +151,44 @@ int main()
 		    	}
 		    	readfile3.close();
 		    }
-		    //cout<<"files: "<<endl;
-		    //print_vec_string(document);
 		    document=clean_document(document,StopWords,PunctuationList);
 		    dictionary = genDic(document,dictionary);
-
         }
         closedir (dir);
     } else {
         perror ("");
     	return EXIT_FAILURE;
     }
-    cout<<"print dic"<<endl;
-    print_vec_dic(dictionary);
+    //Generacion de un txt con la lista de palabras en el diccionario
+    ofstream DiccFile;
+	DiccFile.open("DiccFile.txt");
+
+	for (int i = 0; i < dictionary.size(); i++){
+		DiccFile<<dictionary[i]<<" - ";
+	}
+	DiccFile.close();
+
 /////////////////////////////////////////////////////////////////
 	vector<string> ListOfVC;
     if ((dir = opendir ("/home/fabrizio/Desktop/GitHubRepos/EDA/EDA-2019-01/EDATeoria/HW1/files")) != NULL) {
     	while ((ent = readdir (dir)) != NULL) {
-	    	//printf ("%s\n", ent->d_name);
 	    	vector<string> document;
-		    ifstream readfile3(ent->d_name);
-		    if (readfile3.is_open()){
-		    	while(getline(readfile3,line)){
-		    		document.push_back(line);
-		    	}
-		    	readfile3.close();
-		    }
+	    	string docname=ent->d_name;
+	    	if (docname.size()>3)
+	    	{
+			    ifstream readfile3(docname);
+			    if (readfile3.is_open()){
+			    	while(getline(readfile3,line)){
+			    		document.push_back(line);
+			    	}
+			    	readfile3.close();
+			    }
+			}
+		    //documento guardado
+		    document=clean_document(document,StopWords,PunctuationList);
 		    vector<int> VC;
 			VC=genVC(document,dictionary,VC);
-			string tempoVC=safeVC(VC);
+			string tempoVC=safeVC(VC, ent->d_name);
 			ListOfVC.push_back(tempoVC);
 		}
 		closedir (dir);
@@ -193,45 +196,6 @@ int main()
 		perror ("");
 	  	return EXIT_FAILURE;
 	}
-
-
-
-
-    //lista de stop words guardada en el vector StopWords
-    //lista de Punctuation guardada en el vector PunctuationList
-
-    //leer un documento test para probar el borrado de signos de puntuacion y stop words
-    //falta hacerlo con multiples text files
-
-    /*cout<<"----------------original file---------------------"<<endl;
-    
-    vector<string> document;
-    ifstream readfile3("test.txt");
-    if (readfile3.is_open()){
-    	while(getline(readfile3,line)){
-    		document.push_back(line);
-    	}
-    	readfile3.close();
-    }
-    document=clean_document(document,StopWords,PunctuationList);
-*/
-/*	cout<<"---------------dictionary print--------------- "<<endl;
-	vector<string> dictionary;
-	dictionary = genDic(document,dictionary);
-	print_vec_dic(dictionary);*/
-	/*cout<<"-----------------VC print------------------- "<<endl;
-	vector<int> VC; // modificar a matriz
-	VC=genVC(document,dictionary,VC);
-	print_vec_int(VC);*/
-/*	string tempoVC=safeVC(VC);
-
-	vector<string> ListOfVC;
-
-	for (int i = 0; i < 1; i++)
-	{
-		ListOfVC.push_back(tempoVC);
-	}
-*/
 	ofstream VCFile;
 	VCFile.open("VCFile.txt");
 	for (int i = 0; i < ListOfVC.size(); i++)
