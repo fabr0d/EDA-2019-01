@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1554515272 source:c:\users\fab\desktop\test1\test1\main.cpp
+	<windows.h>
+	<iostream>
+	<math.h>
+	<GL/glut.h>
+	<cmath>
+	<vector>
+	<stdlib.h>
+
+976692172 c:\users\fab\desktop\quadtree\glut\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1554515631 source:c:\users\fab\desktop\octree bueno y a mejorar\test1\test1\main.cpp
+	<windows.h>
+	<iostream>
+	<math.h>
+	<GL/glut.h>
+	<cmath>
+	<vector>
+	<stdlib.h>
+
+1554515631 source:c:\users\fab\desktop\octree bueno y a mejorar\octree v1.5 opengl\main.cpp
+	<windows.h>
+	<iostream>
+	<math.h>
+	<GL/glut.h>
+	<cmath>
+	<vector>
+	<stdlib.h>
+
