@@ -191,8 +191,51 @@ public:
 		}
 	}
 
-	void searchPointInReg();
-	
+	void searchPointInReg(double exs, double ye, double ze)
+	{
+		if (Points.size()>0 && left==NULL && right==NULL)
+		{
+			printListOfPoints(Points);
+			return;
+		}
+		if (Points.size() == 0 && left == NULL && right == NULL)
+		{
+			return;
+		}
+		if (axis == 0)
+		{
+			if (exs < midval)
+			{
+				left->searchPointInReg(exs, ye, ze);
+			}
+			else
+			{
+				right->searchPointInReg(exs, ye, ze);
+			}
+		}
+		if (axis == 1)
+		{
+			if (ye < midval)
+			{
+				left->searchPointInReg(exs, ye, ze);
+			}
+			else
+			{
+				right->searchPointInReg(exs, ye, ze);
+			}
+		}
+		if (axis == 2)
+		{
+			if (ze < midval)
+			{
+				left->searchPointInReg(exs, ye, ze);
+			}
+			else
+			{
+				right->searchPointInReg(exs, ye, ze);
+			}
+		}
+	}
 };
 
 void printKDTree(kdtree *kd) {
@@ -222,15 +265,21 @@ void printKDTree(kdtree *kd) {
 int main()
 {
 	vector<Point> PuntosRandom;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 50; i++)
 	{
-		PuntosRandom.push_back(Point(rand() % 20 + 1, rand() % 20 + 1, rand() % 20 + 1));
+		PuntosRandom.push_back(Point(rand() % 100 + 1, rand() % 100 + 1, rand() % 100 + 1));
 	}
 	printListOfPoints(PuntosRandom); cout << "" << endl;
 	kdtree kd1(0);
 	kd1.insert(PuntosRandom);
 	cout << "--------------------inicio de la impresion del kdtree-------------------" << endl;
 	printKDTree(&kd1);
+	cout << "*****************************************************************************" << endl;
+	double equis=1;
+	double yegrigega=2;
+	double zeta=3;
+
+	kd1.searchPointInReg(equis, yegrigega, zeta);
 	getchar();
 	return 0;
 }
