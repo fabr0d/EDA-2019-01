@@ -1,2 +1,6 @@
 ﻿  main.cpp
-  KD Tree.vcxproj -> C:\Users\Fab\Desktop\KD Tree\KD Tree\Debug\KD Tree.exe
+c:\users\fab\documents\github\eda-2019-01\kd tree v0.1\kd tree\main.cpp(12): warning C4018: '<': signed/unsigned mismatch
+c:\users\fab\documents\github\eda-2019-01\kd tree v0.1\kd tree\main.cpp(45): warning C4018: '<': signed/unsigned mismatch
+c:\users\fab\documents\github\eda-2019-01\kd tree v0.1\kd tree\main.cpp(75): warning C4018: '<': signed/unsigned mismatch
+c:\users\fab\documents\github\eda-2019-01\kd tree v0.1\kd tree\main.cpp(124): warning C4018: '<': signed/unsigned mismatch
+  KD Tree.vcxproj -> C:\Users\Fab\Documents\GitHub\EDA-2019-01\KD Tree v0.1\KD Tree\Debug\KD Tree.exe

@@ -155,42 +155,49 @@ void Octree::insert(Node *node)
 			printPoint(SDF->PIIF);
 			printPoint(SDF->PSDP);
 			cout << "Punto medio : "; PuntoMedio(SDF->PIIF, SDF->PSDP);
+			
 			SDP = new Octree(Point((PSDP.x + PIIF.x) / 2, (PSDP.y + PIIF.y) / 2, (PSDP.z + PIIF.z) / 2), Point(PSDP.x, PSDP.y, PSDP.z), ancho / 2);
 			cout << "Se creo un Cubo Superior Derecho Posterior" << endl;
 			cout << "limites :" << endl;
 			printPoint(SDP->PIIF);
 			printPoint(SDP->PSDP);
 			cout << "Punto medio : "; PuntoMedio(SDP->PIIF, SDP->PSDP);
+			
 			IDF = new Octree(Point(PIIF.x + p, PIIF.y, PIIF.z), Point(PIIF.x + 2 * p, PIIF.y + p, PIIF.z - p), ancho / 2);
 			cout << "Se creo un Cubo Inferior Derecho Frontal" << endl;
 			cout << "limites :" << endl;
 			printPoint(IDF->PIIF);
 			printPoint(IDF->PSDP);
 			cout << "Punto medio : "; PuntoMedio(IDF->PIIF, IDF->PSDP);
+			
 			IDP = new Octree(Point(PIIF.x + p, PIIF.y, PIIF.z - p), Point(PIIF.x + 2 * p, PIIF.y + p, PIIF.z - 2 * p), ancho / 2);
 			cout << "Se creo un Cubo Inferior Derecho Posterior" << endl;
 			cout << "limites :" << endl;
 			printPoint(IDP->PIIF);
 			printPoint(IDP->PSDP);
 			cout << "Punto medio : "; PuntoMedio(IDP->PIIF, IDP->PSDP);
+			
 			SIF = new Octree(Point(PIIF.x, PIIF.y + p, PIIF.z), Point(PIIF.x + p, PIIF.y + 2 * p, PIIF.z - p), ancho / 2);
 			cout << "Se creo un Cubo Superior Izquierdo Frontal" << endl;
 			cout << "limites :" << endl;
 			printPoint(SIF->PIIF);
 			printPoint(SIF->PSDP);
 			cout << "Punto medio : "; PuntoMedio(SIF->PIIF, SIF->PSDP);
+			
 			SIP = new Octree(Point(PIIF.x, PIIF.y + p, PIIF.z - p), Point(PIIF.x + p, PIIF.y + 2 * p, PIIF.z - 2 * p), ancho / 2);
 			cout << "Se creo un Cubo Superior Izquierdo Posterior" << endl;
 			cout << "limites :" << endl;
 			printPoint(SIP->PIIF);
 			printPoint(SIP->PSDP);
 			cout << "Punto medio : "; PuntoMedio(SIP->PIIF, SIP->PSDP);
+			
 			IIF = new Octree(Point(PIIF.x, PIIF.y, PIIF.z), Point((PSDP.x + PIIF.x) / 2, (PSDP.y + PIIF.y) / 2, (PSDP.z + PIIF.z) / 2), ancho / 2);
 			cout << "Se creo un Cubo Inferior Izquierdo Frontal" << endl;
 			cout << "limites :" << endl;
 			printPoint(IIF->PIIF);
 			printPoint(IIF->PSDP);
 			cout << "Punto medio : "; PuntoMedio(IIF->PIIF, IIF->PSDP);
+			
 			IIP = new Octree(Point(PIIF.x, PIIF.y, PIIF.z - p), Point(PIIF.x + p, PIIF.y + p, PIIF.z - 2 * p), ancho / 2);
 			cout << "Se creo un Cubo Inferior Izquierdo Posterior" << endl;
 			cout << "limites :" << endl;
