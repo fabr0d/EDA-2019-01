@@ -8,8 +8,9 @@
 #include <cmath>
 #include <vector>
 #include <stdlib.h>
+#include <fstream>
 using namespace std;
-
+//Octree oct1(Point(0, 0, 0), Point(50, 50, -50), 50);
 double RandomFloat(double a, double b) {
     double random = ((double) rand()) / (double) RAND_MAX;
     double diff = b - a;
@@ -118,6 +119,7 @@ public:
 };
 void Octree::insert(Point punto1)
 {
+    //printPoint(punto1);
 	//Esta dentro del cubo?
 	if (!inBoundary(punto1)) {
 		return;
@@ -502,12 +504,15 @@ void idle(){ // AGREGAR ESTA FUNCION
 }
 
 //funcion llamada a cada imagen
+Octree oct1(Point(-1, -1, 1), Point(1, 1, -1), 2);
 void glPaint(void) {
 	//El fondo de la escena al color initial
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //CAMBIO
 	glLoadIdentity();
-	gluPerspective(40.0,1,0.5,500.0);
-
+	gluPerspective(2.5,1,0.5,500.0);
+    //glScaled(8,8,8);
+    //glOrtho()
+    //gluLookAt(0,0,1,0,0,0,0,0,-0);
 	glTranslatef(0,0,-100.0);
 	glRotatef(ax,0,1,0);
 	glRotatef(ay,1,0,0);
@@ -529,13 +534,18 @@ void glPaint(void) {
     glPopMatrix();
     */
 
-    Octree oct1(Point(0, 0, 0), Point(50, 50, -50), 50);
-
-	for (int i = 0; i < 25; i++)
-	{
-		oct1.insert(Point(RandomFloat(0.0, 50.0), RandomFloat(0.0, 50.0), RandomFloat(0.0, -50.0)));
-	}
 	PrintOctree(&oct1);
+    /*double equis;
+    double ye;
+    double zeta;
+    string line;
+    vector<string> pointsList;
+    ifstream bunny("C:\\Users\\Fab\\Documents\\GitHub\\EDA-2019-01\\Octree v1.5 OpenGL Points\\OctreeP\\bunny.txt");
+    cout<<bunny.is_open()<<endl;
+    while(bunny>>equis>>ye>>zeta){*/
+
+            //oct1.insert(Point(equis,ye,zeta));
+    //}
 
 	//dibuja el gizmo
 
@@ -575,6 +585,22 @@ GLvoid window_key(unsigned char key, int x, int y) {
 //el programa principal
 //
 int main(int argc, char** argv) {
+
+    /*for(int i=0;i<2500;i++){
+        oct1.insert(Point(RandomFloat(-1.0,1.0),RandomFloat(-1.0,1.0),RandomFloat(-1.0,1.0)));
+    }*/
+
+    double equis;
+    double ye;
+    double zeta;
+    string line;
+    vector<string> pointsList;
+    ifstream bunny("C:\\Users\\Fab\\Documents\\GitHub\\EDA-2019-01\\Octree v1.5 OpenGL Points\\OctreeP\\bunny.txt");
+    cout<<bunny.is_open()<<endl;
+    while(bunny>>equis>>ye>>zeta){
+            oct1.insert(Point(equis,ye,zeta));
+    }
+
 	//Inicializacion de la GLUT
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);

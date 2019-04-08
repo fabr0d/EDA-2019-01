@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1554759254 source:c:\users\fab\documents\github\eda-2019-01\octree v1.5 opengl points\octreep\main.cpp
+	<windows.h>
+	<iostream>
+	<math.h>
+	<GL/glut.h>
+	<cmath>
+	<vector>
+	<stdlib.h>
+	<fstream>
+
+1554615484 c:\users\fab\documents\github\eda-2019-01\octree v1.5 opengl points\glut\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
