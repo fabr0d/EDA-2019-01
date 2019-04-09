@@ -509,7 +509,7 @@ void glPaint(void) {
 	//El fondo de la escena al color initial
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //CAMBIO
 	glLoadIdentity();
-	gluPerspective(2.5,1,0.5,500.0);
+	gluPerspective(1.5,1,0.5,500.0);
     //glScaled(8,8,8);
     //glOrtho()
     //gluLookAt(0,0,1,0,0,0,0,0,-0);

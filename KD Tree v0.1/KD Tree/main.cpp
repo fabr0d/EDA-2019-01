@@ -262,6 +262,13 @@ void printKDTree(kdtree *kd) {
 	cout << "--------------------------------------------------" << endl;
 }
 
+void printKDtree3D(kdtree *kd, Point p1, Point p2, int axis) {
+	if (kd->left == NULL, kd->right == NULL)
+	{
+
+	}
+}
+
 int main()
 {
 	vector<Point> PuntosRandom;
