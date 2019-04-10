@@ -11,6 +11,8 @@
 #include <fstream>
 using namespace std;
 //Octree oct1(Point(0, 0, 0), Point(50, 50, -50), 50);
+const int maxpoints = 500;
+
 double RandomFloat(double a, double b) {
     double random = ((double) rand()) / (double) RAND_MAX;
     double diff = b - a;
@@ -119,18 +121,21 @@ public:
 };
 void Octree::insert(Point punto1)
 {
-    //printPoint(punto1);
 	//Esta dentro del cubo?
 	if (!inBoundary(punto1)) {
 		return;
 	}
 
-	//Si el cubo no tiene puntos dentro y no esta partido
-	if (Points.size() == 0 &&
+	//Si el cubo tienen el numero de puntos menor al maximo dentro y no esta partido
+	if (Points.size() < maxpoints &&
 		IIF == NULL && IDF == NULL && IIP == NULL && IDP == NULL &&
 		SIF == NULL && SDF == NULL && SIP == NULL && SDP == NULL) {
 		Points.push_back(punto1);
-		//cout << "se inserto el punto: "; printPoint(Points[0]);
+		//cout << "se inserto el punto y el cubo contiene: ";
+		/*for (int i = 0; i < Points.size(); i++)
+		{
+			printPoint(Points[i]);
+		}*/
 		return;
 	}
 	else
@@ -148,71 +153,75 @@ void Octree::insert(Point punto1)
 			SIP->insert(punto1);
 			SDP->insert(punto1);
 		}
-		else //cuando encuentra un cubo que tien datos
+		else //cuando encuentra un cubo tiene el numero de puntos igual al maximo
 		{
 			vector<Point> tempoints;
 			tempoints.push_back(punto1);
-			tempoints.push_back(Points[0]);
+			for (int i = 0; i < Points.size(); i++)
+			{
+				tempoints.push_back(Points[i]);
+			}
+			//tempoints.push_back(Points[0]);
 
 			double p = ancho / 2;
 			//cout << "anchodel nuevo cubo: " << ancho / 2 << endl;
 
 			SDF = new Octree(Point(PIIF.x + p, PIIF.y + p, PIIF.z), Point(PIIF.x + 2 * p, PIIF.y + 2 * p, PIIF.z - p), ancho / 2);
-			/*cout << "Se creo un Cubo Superior Derecho Frontal" << endl;
-			cout << "limites :" << endl;
-			printPoint(SDF->PIIF);
-			printPoint(SDF->PSDP);
-			cout << "Punto medio : "; PuntoMedio(SDF->PIIF, SDF->PSDP);*/
+			//cout << "Se creo un Cubo Superior Derecho Frontal" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(SDF->PIIF);
+			//printPoint(SDF->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(SDF->PIIF, SDF->PSDP);
 
 			SDP = new Octree(Point((PSDP.x + PIIF.x) / 2, (PSDP.y + PIIF.y) / 2, (PSDP.z + PIIF.z) / 2), Point(PSDP.x, PSDP.y, PSDP.z), ancho / 2);
-			/*cout << "Se creo un Cubo Superior Derecho Posterior" << endl;
-			cout << "limites :" << endl;
-			printPoint(SDP->PIIF);
-			printPoint(SDP->PSDP);
-			cout << "Punto medio : "; PuntoMedio(SDP->PIIF, SDP->PSDP);*/
+			//cout << "Se creo un Cubo Superior Derecho Posterior" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(SDP->PIIF);
+			//printPoint(SDP->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(SDP->PIIF, SDP->PSDP);
 
 			IDF = new Octree(Point(PIIF.x + p, PIIF.y, PIIF.z), Point(PIIF.x + 2 * p, PIIF.y + p, PIIF.z - p), ancho / 2);
-			/*cout << "Se creo un Cubo Inferior Derecho Frontal" << endl;
-			cout << "limites :" << endl;
-			printPoint(IDF->PIIF);
-			printPoint(IDF->PSDP);
-			cout << "Punto medio : "; PuntoMedio(IDF->PIIF, IDF->PSDP);*/
+			//cout << "Se creo un Cubo Inferior Derecho Frontal" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(IDF->PIIF);
+			//printPoint(IDF->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(IDF->PIIF, IDF->PSDP);
 
 			IDP = new Octree(Point(PIIF.x + p, PIIF.y, PIIF.z - p), Point(PIIF.x + 2 * p, PIIF.y + p, PIIF.z - 2 * p), ancho / 2);
-			/*cout << "Se creo un Cubo Inferior Derecho Posterior" << endl;
-			cout << "limites :" << endl;
-			printPoint(IDP->PIIF);
-			printPoint(IDP->PSDP);
-			cout << "Punto medio : "; PuntoMedio(IDP->PIIF, IDP->PSDP);*/
+			//cout << "Se creo un Cubo Inferior Derecho Posterior" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(IDP->PIIF);
+			//printPoint(IDP->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(IDP->PIIF, IDP->PSDP);
 
 			SIF = new Octree(Point(PIIF.x, PIIF.y + p, PIIF.z), Point(PIIF.x + p, PIIF.y + 2 * p, PIIF.z - p), ancho / 2);
-			/*cout << "Se creo un Cubo Superior Izquierdo Frontal" << endl;
-			cout << "limites :" << endl;
-			printPoint(SIF->PIIF);
-			printPoint(SIF->PSDP);
-			cout << "Punto medio : "; PuntoMedio(SIF->PIIF, SIF->PSDP);*/
+			//cout << "Se creo un Cubo Superior Izquierdo Frontal" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(SIF->PIIF);
+			//printPoint(SIF->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(SIF->PIIF, SIF->PSDP);
 
 			SIP = new Octree(Point(PIIF.x, PIIF.y + p, PIIF.z - p), Point(PIIF.x + p, PIIF.y + 2 * p, PIIF.z - 2 * p), ancho / 2);
-			/*cout << "Se creo un Cubo Superior Izquierdo Posterior" << endl;
-			cout << "limites :" << endl;
-			printPoint(SIP->PIIF);
-			printPoint(SIP->PSDP);
-			cout << "Punto medio : "; PuntoMedio(SIP->PIIF, SIP->PSDP);*/
+			//cout << "Se creo un Cubo Superior Izquierdo Posterior" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(SIP->PIIF);
+			//printPoint(SIP->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(SIP->PIIF, SIP->PSDP);
 
 			IIF = new Octree(Point(PIIF.x, PIIF.y, PIIF.z), Point((PSDP.x + PIIF.x) / 2, (PSDP.y + PIIF.y) / 2, (PSDP.z + PIIF.z) / 2), ancho / 2);
-			/*cout << "Se creo un Cubo Inferior Izquierdo Frontal" << endl;
-			cout << "limites :" << endl;
-			printPoint(IIF->PIIF);
-			printPoint(IIF->PSDP);
-			cout << "Punto medio : "; PuntoMedio(IIF->PIIF, IIF->PSDP);*/
+			//cout << "Se creo un Cubo Inferior Izquierdo Frontal" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(IIF->PIIF);
+			//printPoint(IIF->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(IIF->PIIF, IIF->PSDP);
 
 			IIP = new Octree(Point(PIIF.x, PIIF.y, PIIF.z - p), Point(PIIF.x + p, PIIF.y + p, PIIF.z - 2 * p), ancho / 2);
-			/*cout << "Se creo un Cubo Inferior Izquierdo Posterior" << endl;
-			cout << "limites :" << endl;
-			printPoint(IIP->PIIF);
-			printPoint(IIP->PSDP);
-			cout << "Punto medio : "; PuntoMedio(IIP->PIIF, IIP->PSDP);
-			cout << "------------------------------------------------" << endl;*/
+			//cout << "Se creo un Cubo Inferior Izquierdo Posterior" << endl;
+			//cout << "limites :" << endl;
+			//printPoint(IIP->PIIF);
+			//printPoint(IIP->PSDP);
+			//cout << "Punto medio : "; PuntoMedio(IIP->PIIF, IIP->PSDP);
+			//cout << "------------------------------------------------" << endl;
 
 			for (int i = 0; i < tempoints.size(); i++)
 			{
@@ -275,12 +284,15 @@ void Octree::insert(Point punto1)
 					}
 				}
 			}
-			//cout << "borro el punto: ";
-			//printPoint(Points[0]);
+			//cout << "borro los puntos: ";
+			/*for (int i = 0; i < Points.size(); i++)
+			{
+				printPoint(Points[i]);
+			}*/
 			//cout << "del cubo: ";
 			//printPoint(PIIF);
 			//printPoint(PSDP);
-			Points.pop_back();
+			Points.clear();
 		}
 	}
 }
@@ -289,14 +301,19 @@ bool Octree::search(Point p)
 {
 	//Comprobar si esta en el limite
 	if (!inBoundary(p)) {
-		return false; //significa que no se encontro
+		return false; //significa que no esta en el limite
 	}
+
 	if (Points.size() != 0) {
-		if (Points[0].x == p.x && Points[0].y == p.y && Points[0].z == p.z)
+
+		for (int i = 0; i < Points.size(); i++)
 		{
-			//cout << "se encontro!" << endl;
-			//printPoint(Points[0]);
-			return true;
+			if (Points[i].x == p.x && Points[i].y == p.y && Points[i].z == p.z)
+			{
+				cout << "se encontro!" << endl;
+				printPoint(Points[i]);
+				return true;
+			}
 		}
 	}
 	//primero comprobar si esta arriba o abajo del cubo
@@ -390,6 +407,8 @@ bool Octree::search(Point p)
 			}
 		}
 	}
+
+
 };
 
 // Verifica que un punto este en una region
@@ -424,12 +443,15 @@ void PrintOctree(Octree *octo)
         glutSolidCube(octo->ancho);		//ancho del cubo
         glPopMatrix();
 
-        glBegin(GL_POINTS);
-            glColor3d(250,0,0); 		//color
-            glPointSize(5.0);			//ancho del punto (no funca)
-            glVertex3d(octo->Points[0].x,octo->Points[0].y,octo->Points[0].z);	//ubicacion del punto
-        glEnd();
-        glPointSize(5.0);
+        for (int i=0;i< octo->Points.size();i++)
+        {
+            glBegin(GL_POINTS);
+                glColor3d(250,0,0); 		//color
+                glVertex3d(octo->Points[i].x,octo->Points[i].y,octo->Points[i].z);	//ubicacion del punto
+            glEnd();
+            glPointSize(5.0);
+        }
+
 	}
 	if (octo->Points.size() == 0 && octo->IIF != NULL && octo->IDF != NULL && octo->IIP != NULL && octo->IDP != NULL &&
 		octo->SIF != NULL && octo->SDF != NULL && octo->SIP != NULL && octo->SDP != NULL)
