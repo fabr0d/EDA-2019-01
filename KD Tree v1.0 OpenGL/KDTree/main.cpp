@@ -97,6 +97,8 @@ void printListOfPoints(vector<Point> lista) {
 class kdtree
 {
 public:
+    Point PIIF; //Punto Inferior Izquierdo Frontal
+	Point PSDP; //Punto Superior Derecho Posterior
 	int axis; // puede ser x, y o z
 	double midval; // segun el axis
 	vector<Point> Points; // puntos almacenados en un octree
@@ -104,14 +106,18 @@ public:
 	kdtree *right;
 	kdtree()
 	{
+	    PIIF = Point(0, 0, 0);
+		PSDP = Point(0, 0, 0);
 		midval = 0;
 		axis = 0;
 		left = NULL;
 		right = NULL;
 	}
 
-	kdtree(int _axis)
+	kdtree(int _axis, Point PIIF_, Point PSDP_)
 	{
+		PIIF = PIIF_;
+		PSDP = PSDP_;
 		//midval = _midval;
 		axis = _axis;
 		left = NULL;
@@ -182,24 +188,26 @@ public:
 			if (axis==0)
 			{
 				//cout << "se crea los 2 hijos con el axis 1" << endl;
-				left = new kdtree(1);
-				right = new kdtree(1);
+				left = new kdtree(1, Point(PIIF.x, PIIF.y, PIIF.z), Point(midval, PSDP.y, PSDP.z));
+				right = new kdtree(1, Point(midval, PIIF.y, PIIF.z), Point(PSDP.x, PSDP.y, PSDP.z));
 				left->insert(PuntosLadoIzq);
 				right->insert(PuntosLadoDer);
+
+
 			}
 			if (axis == 1)
 			{
 				//cout << "se crea los 2 hijos con el axis 2" << endl;
-				left = new kdtree(2);
-				right = new kdtree(2);
+				left = new kdtree(2, Point(PIIF.x, PIIF.y, PIIF.z), Point(PSDP.x, midval, PSDP.z));
+				right = new kdtree(2, Point(PIIF.x, midval, PIIF.z), Point(PSDP.x, PSDP.y, PSDP.z));
 				left->insert(PuntosLadoIzq);
 				right->insert(PuntosLadoDer);
 			}
 			if (axis == 2)
 			{
 				//cout << "se crea los 2 hijos con el axis 0" << endl;
-				left = new kdtree(0);
-				right = new kdtree(0);
+				left = new kdtree(0, Point(PIIF.x, PIIF.y, midval), Point(PSDP.x, PSDP.y, PSDP.z));
+				right = new kdtree(0, Point(PIIF.x, PIIF.y, PIIF.z), Point(PSDP.x, PSDP.y, midval));
 				left->insert(PuntosLadoIzq);
 				right->insert(PuntosLadoDer);
 			}
@@ -277,10 +285,129 @@ void printKDTree(kdtree *kd) {
 	cout << "--------------------------------------------------" << endl;
 }
 
-void printKDtree3D(kdtree *kd, Point p1, Point p2, int axis){
-    if(){
+void printKDtree3D(kdtree *kd) {
+	if (kd == NULL)
+	{
+		return;
+	}
+	if (kd->left == NULL && kd->right == NULL)//Llegamos a un nodo hoja sin hijos se imprime sus hijos
+	{
+        for(int i=0; i<kd->Points.size();i++)
+        {
+            glBegin(GL_POINTS);
+                glColor3d(250,0,0); 		//color
+                glVertex3d(kd->Points[i].x,kd->Points[i].y,kd->Points[i].z);	//ubicacion del punto
+            glEnd();
+            glPointSize(5.0);
+        }
+		//printListOfPoints(kd->Points);
+		return;
+	}
+	if (kd->Points.size() == 0 && kd->left != NULL && kd->right != NULL) //llegamos a una figura que se dividio a partir de un eje
+	{
+		if (kd->axis == 0)
+		{
+			//Linea 1
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->midval, kd->PIIF.y, kd->PIIF.z);	//punto inicial
+                glVertex3d(kd->midval, kd->PSDP.y, kd->PIIF.z);	//punto final
+            glEnd();
+			//Linea 2
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->midval, kd->PSDP.y, kd->PIIF.z);	//punto inicial
+                glVertex3d(kd->midval, kd->PSDP.y, kd->PSDP.z);	//punto final
+            glEnd();
+			//Linea 3
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->midval, kd->PSDP.y, kd->PSDP.z);	//punto inicial
+                glVertex3d(kd->midval, kd->PIIF.y, kd->PSDP.z);	//punto final
+            glEnd();
+			//Linea 4
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->midval, kd->PIIF.y, kd->PSDP.z);	//punto inicial
+                glVertex3d(kd->midval, kd->PIIF.y, kd->PIIF.z);	//punto final
+            glEnd();
 
-    }
+			printKDtree3D(kd->left);
+			printKDtree3D(kd->right);
+		}
+		if (kd->axis == 1)
+		{
+			//Linea 1
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PIIF.x, kd->midval, kd->PIIF.z);	//punto inicial
+                glVertex3d(kd->PSDP.x, kd->midval, kd->PIIF.z);	//punto final
+            glEnd();
+			//Linea 2
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PSDP.x, kd->midval, kd->PIIF.z);	//punto inicial
+                glVertex3d(kd->PSDP.x, kd->midval, kd->PSDP.z);	//punto final
+            glEnd();
+			//Linea 3
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PSDP.x, kd->midval, kd->PSDP.z);	//punto inicial
+                glVertex3d(kd->PIIF.x, kd->midval, kd->PSDP.z);	//punto final
+            glEnd();
+			//Linea 4
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PIIF.x, kd->midval, kd->PSDP.z);	//punto inicial
+                glVertex3d(kd->PIIF.x, kd->midval, kd->PIIF.z);	//punto final
+            glEnd();
+
+			printKDtree3D(kd->left);
+			printKDtree3D(kd->right);
+		}
+		if (kd->axis == 2)
+		{
+			//Linea 1
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PIIF.x, kd->PSDP.y, kd->midval);	//punto inicial
+                glVertex3d(kd->PSDP.x, kd->PSDP.y, kd->midval);	//punto final
+            glEnd();
+			//Linea 2
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PSDP.x, kd->PSDP.y, kd->midval);	//punto inicial
+                glVertex3d(kd->PSDP.x, kd->PIIF.y, kd->midval);	//punto final
+            glEnd();
+			//Linea 3
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PSDP.x, kd->PIIF.y, kd->midval);	//punto inicial
+                glVertex3d(kd->PIIF.x, kd->PIIF.y, kd->midval);	//punto final
+            glEnd();
+			//Linea 4
+			glBegin(GL_LINES);
+                glColor3d(250,0,0);	//color
+                glLineWidth(4);		//grosor de la linea
+                glVertex3d(kd->PIIF.x, kd->PIIF.y, kd->midval);	//punto inicial
+                glVertex3d(kd->PIIF.x, kd->PSDP.y, kd->midval);	//punto final
+            glEnd();
+
+			printKDtree3D(kd->left);
+			printKDtree3D(kd->right);
+		}
+	}
 }
 //---------------------------------------------------------------------------------
 
@@ -338,12 +465,12 @@ void idle(){ // AGREGAR ESTA FUNCION
 }
 
 //funcion llamada a cada imagen
-Octree oct1(Point(-1, -1, 1), Point(1, 1, -1), 2);
+kdtree kd1(0,Point(-1, -1, 1), Point(1, 1, -1));
 void glPaint(void) {
 	//El fondo de la escena al color initial
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //CAMBIO
 	glLoadIdentity();
-	gluPerspective(20.0,1,0.5,500.0);
+	gluPerspective(2.0,1,0.5,500.0);
 	glTranslatef(0,0,-100.0);
 	glRotatef(ax,0,1,0);
 	glRotatef(ay,1,0,0);
@@ -351,8 +478,11 @@ void glPaint(void) {
 	displayGizmo();
 
 	glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-
-	PrintKDtree(&kd3);
+    glPushMatrix();
+	glTranslatef(0,0,0);	//punto medio del cubo
+    glutSolidCube(2);		//ancho del cubo
+    glPopMatrix();
+	printKDtree3D(&kd1);
 
 	glutSwapBuffers();
 }
@@ -392,19 +522,20 @@ int main(int argc, char** argv) {
     double equis;
     double ye;
     double zeta;
-    vector<string> pointsList;
-    ifstream bunny("C:\\Users\\Fab\\Documents\\GitHub\\EDA-2019-01\\Octree v1.5 OpenGL Points\\OctreeP\\bunny.txt");
+    vector<Point>PuntosDelBunny;
+    ifstream bunny("C:\\Users\\Fab\\Documents\\GitHub\\EDA-2019-01\\KD Tree v1.0 OpenGL\\KDTree\\bunny.txt");
     cout<<bunny.is_open()<<endl;
     while(bunny>>equis>>ye>>zeta){
-            oct1.insert(Point(equis,ye,zeta));
+        PuntosDelBunny.push_back(Point(equis,ye,zeta));
     }
-
+    kd1.insert(PuntosDelBunny);
+    printKDtree3D(&kd1);
 	//Inicializacion de la GLUT
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(700, 700); //tamaño de la ventana
 	glutInitWindowPosition(0, 0); //posicion de la ventana
-	glutCreateWindow("Octree"); //titulo de la ventana
+	glutCreateWindow("KDtree"); //titulo de la ventana
 	init_GL(); //funcion de inicializacion de OpenGL
 	glutDisplayFunc(glPaint);
 	glutReshapeFunc(&window_redraw);

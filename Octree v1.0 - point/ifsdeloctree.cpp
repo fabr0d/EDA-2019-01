@@ -273,7 +273,7 @@ IIP = new Octree(Point(PIIF.x, PIIF.y, PIIF.z - p), Point(PIIF.x + p, PIIF.y + p
         glVertex3d(1.0,1.0,-2.1);
     glEnd();
 
-"Hacer un punto"
+"Hacer una linea"
 
 	glBegin(GL_LINES);
         glColor3d(250,0,0);	//color

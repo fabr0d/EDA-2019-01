@@ -525,8 +525,13 @@ void idle(){ // AGREGAR ESTA FUNCION
 	glutPostRedisplay();
 }
 
-//funcion llamada a cada imagen
-Octree oct1(Point(-1, -1, 1), Point(1, 1, -1), 2);
+//para el conejo
+//Octree oct1(Point(-1, -1, 1), Point(1, 1, -1), 2);
+
+
+//para el dragon
+Octree oct1(Point(-0.25, 0, 0.25), Point(0.25, 0.50, -0.25), 0.5);
+
 void glPaint(void) {
 	//El fondo de la escena al color initial
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //CAMBIO
@@ -615,9 +620,7 @@ int main(int argc, char** argv) {
     double equis;
     double ye;
     double zeta;
-    string line;
-    vector<string> pointsList;
-    ifstream bunny("C:\\Users\\Fab\\Documents\\GitHub\\EDA-2019-01\\Octree v1.5 OpenGL Points\\OctreeP\\bunny.txt");
+    ifstream bunny("C:\\Users\\Fab\\Documents\\GitHub\\EDA-2019-01\\Octree v1.5 OpenGL Points\\OctreeP\\dragon.txt");
     cout<<bunny.is_open()<<endl;
     while(bunny>>equis>>ye>>zeta){
             oct1.insert(Point(equis,ye,zeta));
