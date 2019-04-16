@@ -3,15 +3,15 @@
 #include <iostream>
 #include <math.h>
 #include<GL/glut.h>
-//#include <quadTree.h>
-#define KEY_ESC 27
 #include <cmath>
 #include <vector>
 #include <stdlib.h>
 #include <fstream>
 #include <algorithm>
+#include <chrono>
+#define KEY_ESC 27
 using namespace std;
-//Octree oct1(Point(0, 0, 0), Point(50, 50, -50), 50);
+using namespace chrono;
 double RandomFloat(double a, double b) {
     double random = ((double) rand()) / (double) RAND_MAX;
     double diff = b - a;
@@ -214,48 +214,62 @@ public:
 		}
 	}
 
-	void searchPointInReg(double exs, double ye, double ze)
+	bool searchPointInReg(double exs, double ye, double ze, int &contador)
 	{
 		if (Points.size()>0 && left==NULL && right==NULL)
 		{
-			printListOfPoints(Points);
-			return;
+		    for (int i = 0; i < Points.size(); i++)
+			{
+				if (exs == Points[i].x && ye == Points[i].y && ze == Points[i].z)
+				{
+					cout << "se encontro!" << endl;
+					return true;
+				}
+			}
+			//no se encuentra en la estructura
+			return false;
 		}
 		if (Points.size() == 0 && left == NULL && right == NULL)
 		{
-			return;
+			return false;
 		}
 		if (axis == 0)
 		{
 			if (exs < midval)
 			{
-				left->searchPointInReg(exs, ye, ze);
+			    contador++;
+				left->searchPointInReg(exs, ye, ze, contador);
 			}
 			else
 			{
-				right->searchPointInReg(exs, ye, ze);
+			    contador++;
+				right->searchPointInReg(exs, ye, ze, contador);
 			}
 		}
 		if (axis == 1)
 		{
 			if (ye < midval)
 			{
-				left->searchPointInReg(exs, ye, ze);
+			    contador++;
+				left->searchPointInReg(exs, ye, ze, contador);
 			}
 			else
 			{
-				right->searchPointInReg(exs, ye, ze);
+			    contador++;
+				right->searchPointInReg(exs, ye, ze, contador);
 			}
 		}
 		if (axis == 2)
 		{
 			if (ze < midval)
 			{
-				left->searchPointInReg(exs, ye, ze);
+			    contador++;
+				left->searchPointInReg(exs, ye, ze, contador);
 			}
 			else
 			{
-				right->searchPointInReg(exs, ye, ze);
+			    contador++;
+				right->searchPointInReg(exs, ye, ze, contador);
 			}
 		}
 	}
@@ -298,7 +312,7 @@ void printKDtree3D(kdtree *kd) {
                 glColor3d(250,0,0); 		//color
                 glVertex3d(kd->Points[i].x,kd->Points[i].y,kd->Points[i].z);	//ubicacion del punto
             glEnd();
-            glPointSize(5.0);
+            glPointSize(2.0);
         }
 		//printListOfPoints(kd->Points);
 		return;
@@ -310,28 +324,28 @@ void printKDtree3D(kdtree *kd) {
 			//Linea 1
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->midval, kd->PIIF.y, kd->PIIF.z);	//punto inicial
                 glVertex3d(kd->midval, kd->PSDP.y, kd->PIIF.z);	//punto final
             glEnd();
 			//Linea 2
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->midval, kd->PSDP.y, kd->PIIF.z);	//punto inicial
                 glVertex3d(kd->midval, kd->PSDP.y, kd->PSDP.z);	//punto final
             glEnd();
 			//Linea 3
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->midval, kd->PSDP.y, kd->PSDP.z);	//punto inicial
                 glVertex3d(kd->midval, kd->PIIF.y, kd->PSDP.z);	//punto final
             glEnd();
 			//Linea 4
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->midval, kd->PIIF.y, kd->PSDP.z);	//punto inicial
                 glVertex3d(kd->midval, kd->PIIF.y, kd->PIIF.z);	//punto final
             glEnd();
@@ -344,28 +358,28 @@ void printKDtree3D(kdtree *kd) {
 			//Linea 1
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PIIF.x, kd->midval, kd->PIIF.z);	//punto inicial
                 glVertex3d(kd->PSDP.x, kd->midval, kd->PIIF.z);	//punto final
             glEnd();
 			//Linea 2
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PSDP.x, kd->midval, kd->PIIF.z);	//punto inicial
                 glVertex3d(kd->PSDP.x, kd->midval, kd->PSDP.z);	//punto final
             glEnd();
 			//Linea 3
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PSDP.x, kd->midval, kd->PSDP.z);	//punto inicial
                 glVertex3d(kd->PIIF.x, kd->midval, kd->PSDP.z);	//punto final
             glEnd();
 			//Linea 4
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PIIF.x, kd->midval, kd->PSDP.z);	//punto inicial
                 glVertex3d(kd->PIIF.x, kd->midval, kd->PIIF.z);	//punto final
             glEnd();
@@ -378,28 +392,28 @@ void printKDtree3D(kdtree *kd) {
 			//Linea 1
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PIIF.x, kd->PSDP.y, kd->midval);	//punto inicial
                 glVertex3d(kd->PSDP.x, kd->PSDP.y, kd->midval);	//punto final
             glEnd();
 			//Linea 2
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PSDP.x, kd->PSDP.y, kd->midval);	//punto inicial
                 glVertex3d(kd->PSDP.x, kd->PIIF.y, kd->midval);	//punto final
             glEnd();
 			//Linea 3
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PSDP.x, kd->PIIF.y, kd->midval);	//punto inicial
                 glVertex3d(kd->PIIF.x, kd->PIIF.y, kd->midval);	//punto final
             glEnd();
 			//Linea 4
 			glBegin(GL_LINES);
                 glColor3d(250,0,0);	//color
-                glLineWidth(4);		//grosor de la linea
+                glLineWidth(1);		//grosor de la linea
                 glVertex3d(kd->PIIF.x, kd->PIIF.y, kd->midval);	//punto inicial
                 glVertex3d(kd->PIIF.x, kd->PSDP.y, kd->midval);	//punto final
             glEnd();
@@ -470,7 +484,7 @@ void glPaint(void) {
 	//El fondo de la escena al color initial
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //CAMBIO
 	glLoadIdentity();
-	gluPerspective(2.0,1,0.5,500.0);
+	gluPerspective(2,1,0.5,500.0);
 	glTranslatef(0,0,-100.0);
 	glRotatef(ax,0,1,0);
 	glRotatef(ay,1,0,0);
@@ -529,7 +543,13 @@ int main(int argc, char** argv) {
         PuntosDelBunny.push_back(Point(equis,ye,zeta));
     }
     kd1.insert(PuntosDelBunny);
-    printKDtree3D(&kd1);
+    int cont=0;
+    auto start = high_resolution_clock::now();
+    kd1.searchPointInReg(-0.661534, 0.463804, 0.064445,cont);
+    cout<<"cont: "<<cont<<endl;
+    auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+	cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
 	//Inicializacion de la GLUT
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);

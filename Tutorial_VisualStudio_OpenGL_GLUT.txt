@@ -1,0 +1,27 @@
+Paso1: Descargar : http://www.mediafire.com/file/cmlnr0pj0pyha5d/Glew+and+Glut.zip
+
+Paso2: Descomprimir en carpeta, recordar ubicacion y nombre ("CarpetaOpenGlFiles")
+
+Paso3: Abrir VisualStudio y crear un nuevo Empty Proyect con template Visual C++ ("OpenGLDemo")
+
+Paso4: En el Solution Explorer, click derecho en el nombre del proyecto "OpenGLDemo" y Add - New Item - C++ File y llamarlo main.cpp
+
+Paso5: Denuevo En el Solution Explorer, click derecho en el nombre del proyecto "OpenGLDemo" - Propeties - en la barra de la derecha
+	   la nueva ventana - C/C++ -> General - en el espacio de la izquierda - Click en "Additional Include Directories" y añadir - en la
+	   nueva ventana añadir el directorio CarpetaOpenGlFiles/freeglut/include , tambien añadir CarpetaOpenGlFiles/glew-1.11.0/include
+	   - OK a la ventana Additional Include Directories
+
+Paso6: Volviendo a la ventana de Property Pages, en la barra derecha de la ventana - Linker -> Input - lado derecho de la ventana - 
+	   "Addiotional Dependences" haciendo click y en edit - En la nueva ventana escribir - freeglut.dll y glew32.dll y OK
+
+Paso7: Volviendo a la ventana de Property Pages, en la barra derecha de la ventana - Linker -> General - lado derecho de la ventana -
+	   Additional Library Directories , click y edit - en la nueva ventana "Library Include Directories" añadir el directorio 
+	   CarpetaOpenGlFiles/freeglut/lib y CarpetaOpenGlFiles/glew-1.11.0/lib y OK 
+
+Paso8: En la ventana Property Pages - Apply y OK
+
+Paso9: Abrir la carpeta donde se ubica el proyecto - Añadir los archivos freeglut.dll y glew32.dll de CarpetaOpenGlFiles
+
+Paso10 - Adicional: Añadir freeglut.dll y glew32.dll de CarpetaOpenGlFiles en c://Windows/System32
+
+Paso11: Empezar a programar ! :D

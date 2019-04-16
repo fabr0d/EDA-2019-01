@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1555275573 source:c:\users\fab\documents\github\eda-2019-01\kd tree v1.0 opengl\kdtree\main.cpp
+	<windows.h>
+	<iostream>
+	<math.h>
+	<GL/glut.h>
+	<cmath>
+	<vector>
+	<stdlib.h>
+	<fstream>
+	<algorithm>
+
+1554615484 c:\users\fab\documents\github\eda-2019-01\kd tree v1.0 opengl\glut\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+

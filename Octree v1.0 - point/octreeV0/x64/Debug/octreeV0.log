@@ -1,3 +1,0 @@
-﻿  main.cpp
-c:\users\fab\documents\github\eda-2019-01\octree v1.0 - point\octreev0\main.cpp(406): warning C4715: 'Octree::search': not all control paths return a value
-  octreeV0.vcxproj -> C:\Users\Fab\Documents\GitHub\EDA-2019-01\Octree v1.0 - point\x64\Debug\octreeV0.exe
