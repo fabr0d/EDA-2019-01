@@ -1,0 +1,207 @@
+﻿  main.cpp
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(101): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(107): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(117): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(23): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(18): note: while compiling class template member function 'bool CRTree<double>::insert_point(CPoint<T>)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(84): note: see reference to function template instantiation 'bool CRTree<double>::insert_point(CPoint<T>)' being compiled
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(18): note: see reference to class template instantiation 'CRTree<double>' being compiled
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(426): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(422): note: while compiling class template member function 'void CRTree<double>::find_by_region(CRTreeNode<T> *,CMbr<T>,std::vector<CPoint<T>,std::allocator<_Ty>> &)'
+          with
+          [
+              T=double,
+              _Ty=CPoint<double>
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(157): note: see reference to function template instantiation 'void CRTree<double>::find_by_region(CRTreeNode<T> *,CMbr<T>,std::vector<CPoint<T>,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              T=double,
+              _Ty=CPoint<double>
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(434): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(463): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(458): note: while compiling class template member function 'void CRTree<double>::print(void)'
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(226): note: see reference to function template instantiation 'void CRTree<double>::print(void)' being compiled
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(465): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(470): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(474): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(481): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(498): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(494): note: while compiling class template member function 'void CRTree<double>::drawTree(void)'
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(176): note: see reference to function template instantiation 'void CRTree<double>::drawTree(void)' being compiled
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(500): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(505): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(509): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(514): warning C4244: 'argument': conversion from '_Ty' to 'GLfloat', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(520): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(50): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(41): note: while compiling class template member function 'void CRTree<double>::choose_leaf(CPoint<T>,std::vector<std::pair<CRTreeNode<T> *,int>,std::allocator<_Ty>> &)'
+          with
+          [
+              T=double,
+              _Ty=std::pair<CRTreeNode<double> *,int>
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(21): note: see reference to function template instantiation 'void CRTree<double>::choose_leaf(CPoint<T>,std::vector<std::pair<CRTreeNode<T> *,int>,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              T=double,
+              _Ty=std::pair<CRTreeNode<double> *,int>
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(7): note: while compiling class template member function 'CRTree<double>::CRTree(int,int,int,int,int)'
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(18): note: see reference to function template instantiation 'CRTree<double>::CRTree(int,int,int,int,int)' being compiled
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(395): warning C4018: '>': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(391): note: while compiling class template member function 'void CRTree<double>::adjust_tree(std::vector<std::pair<CRTreeNode<T> *,int>,std::allocator<_Ty>> &)'
+          with
+          [
+              T=double,
+              _Ty=std::pair<CRTreeNode<double> *,int>
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(31): note: see reference to function template instantiation 'void CRTree<double>::adjust_tree(std::vector<std::pair<CRTreeNode<T> *,int>,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              T=double,
+              _Ty=std::pair<CRTreeNode<double> *,int>
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(412): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(28): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(26): note: while compiling class template member function 'bool CMbr<T>::contiene(CPoint<T>)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(428): note: see reference to function template instantiation 'bool CMbr<T>::contiene(CPoint<T>)' being compiled
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(422): note: while compiling class template member function 'void CRTree<double>::find_by_region(CRTreeNode<T> *,CMbr<T>,std::vector<CPoint<T>,std::allocator<_Ty>> &)'
+          with
+          [
+              T=double,
+              _Ty=CPoint<double>
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\main.cpp(157): note: see reference to function template instantiation 'void CRTree<double>::find_by_region(CRTreeNode<T> *,CMbr<T>,std::vector<CPoint<T>,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              T=double,
+              _Ty=CPoint<double>
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(77): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(74): note: while compiling class template member function 'void CRTree<double>::quadratic_split(CRTreeNode<T> *,CRTreeNode<T> *,int)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(397): note: see reference to function template instantiation 'void CRTree<double>::quadratic_split(CRTreeNode<T> *,CRTreeNode<T> *,int)' being compiled
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(41): note: while compiling class template member function 'void CRTree<double>::choose_leaf(CPoint<T>,std::vector<std::pair<CRTreeNode<T> *,int>,std::allocator<_Ty>> &)'
+          with
+          [
+              T=double,
+              _Ty=std::pair<CRTreeNode<double> *,int>
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(21): note: see reference to function template instantiation 'void CRTree<double>::choose_leaf(CPoint<T>,std::vector<std::pair<CRTreeNode<T> *,int>,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              T=double,
+              _Ty=std::pair<CRTreeNode<double> *,int>
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(126): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(169): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(171): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(177): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(208): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(250): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(252): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(263): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(17): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(15): note: while compiling class template member function 'double CMbr<T>::calc_area(void)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(55): note: see reference to function template instantiation 'double CMbr<T>::calc_area(void)' being compiled
+          with
+          [
+              T=double
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(51): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(47): note: while compiling class template member function 'double CMbr<T>::calc_enlargement(CPoint<T>)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(49): note: see reference to function template instantiation 'double CMbr<T>::calc_enlargement(CPoint<T>)' being compiled
+          with
+          [
+              T=double
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(95): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\mbr.cpp(92): note: while compiling class template member function 'bool CMbr<T>::enlargement(CPoint<T>)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(403): note: see reference to function template instantiation 'bool CMbr<T>::enlargement(CPoint<T>)' being compiled
+          with
+          [
+              T=double
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(289): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(281): note: while compiling class template member function 'void CRTree<double>::pick_seeds(CRTreeNode<T> *,CMbr<T> &,CMbr<T> &,int (&)[2])'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(92): note: see reference to function template instantiation 'void CRTree<double>::pick_seeds(CRTreeNode<T> *,CMbr<T> &,CMbr<T> &,int (&)[2])' being compiled
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(74): note: while compiling class template member function 'void CRTree<double>::quadratic_split(CRTreeNode<T> *,CRTreeNode<T> *,int)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(397): note: see reference to function template instantiation 'void CRTree<double>::quadratic_split(CRTreeNode<T> *,CRTreeNode<T> *,int)' being compiled
+          with
+          [
+              T=double
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(293): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(315): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(317): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(353): warning C4018: '<': signed/unsigned mismatch
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(346): note: while compiling class template member function 'void CRTree<double>::pick_next(CRTreeNode<T> *,int &,CMbr<T>,CMbr<T>)'
+          with
+          [
+              T=double
+          ]
+  C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(128): note: see reference to function template instantiation 'void CRTree<double>::pick_next(CRTreeNode<T> *,int &,CMbr<T>,CMbr<T>)' being compiled
+          with
+          [
+              T=double
+          ]
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\rtree.cpp(367): warning C4018: '<': signed/unsigned mismatch
+  mbr.cpp
+  point.cpp
+  rtree.cpp
+  rtreenode.cpp
+  Generating Code...
+  rtree2.vcxproj -> C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\rtree2\rtree2\Debug\rtree2.exe
