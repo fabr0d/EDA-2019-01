@@ -370,7 +370,7 @@ public:
 					//cout << "en el nivel donde estoy aun hay por visitar: " << endl;
 					//printBoolVec(p->IsVisited);
 
-					bool kappa = false;
+					bool UltimoLvl = false;
 					//cout << "paso a verificar cuales no estan visitados de un total de " << DatosEHijos.size() << "elementos " << endl;
 					for (int i = 0; i < p->DatosEHijos.size(); i++)
 					{
@@ -381,7 +381,7 @@ public:
 							if (altura == 64) //estoy en las hojas // numero de bits
 							{
 								//cout << "si estoy en el ultimo nivel del arbol" << endl;
-								kappa = true;
+								UltimoLvl = true;
 								vector<bitset<64>> recons = reconstructHD(toRec);
 								knn.push_back(recons);
 								//cout << "pucheo un knn nuevo :D" << endl;
@@ -408,7 +408,7 @@ public:
 							}
 						}
 					}
-					if (kappa == true) //si recorri ya todo una hoja
+					if (UltimoLvl == true) //si recorri ya todo una hoja
 					{
 						path.pop_back();
 						p = path[path.size() - 1].first;

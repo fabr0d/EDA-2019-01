@@ -1,0 +1,9 @@
+﻿  Source.cpp
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\PH-Tree\phtree_clean\Source.cpp(348): warning C4101: 'numB': unreferenced local variable
+  Generating code
+C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\PH-Tree\phtree_clean\Source.cpp(174): warning C4715: 'LHC::search': not all control paths return a value
+  2 of 706 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  phtree_clean.vcxproj -> C:\Users\Fabrizio\Documents\GitHub\EDA-2019-01\PH-Tree\phtree_clean\x64\Release\phtree_clean.exe
