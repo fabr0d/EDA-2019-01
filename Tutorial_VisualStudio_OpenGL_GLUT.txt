@@ -12,7 +12,10 @@ Paso5: Denuevo En el Solution Explorer, click derecho en el nombre del proyecto 
 	   - OK a la ventana Additional Include Directories
 
 Paso6: Volviendo a la ventana de Property Pages, en la barra derecha de la ventana - Linker -> Input - lado derecho de la ventana - 
-	   "Additional Dependences" haciendo click y en edit - En la nueva ventana escribir - freeglut.lib y glew32.lib y OK
+	   "Additional Dependences" haciendo click y en edit - En la nueva ventana escribir - 
+freeglut.lib
+glew32.lib
+	    y OK
 
 Paso7: Volviendo a la ventana de Property Pages, en la barra derecha de la ventana - Linker -> General - lado derecho de la ventana -
 	   Additional Library Directories , click y edit - en la nueva ventana "Library Include Directories" añadir el directorio 
